@@ -1,8 +1,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue_topology.xsd">
-    <exchange name="magento" type="order.cancel">
-        <binding id="order.cancel" topic="order.cancel" destinationType="queue" destination="order.cancel"/>
-    </exchange>
     <exchange name="magento">
+        <binding id="order.cancel" topic="order.cancel" destinationType="queue" destination="order.cancel"/>
+        <binding id="order.expire.notice" topic="order.expire.notice" destinationType="queue" destination="order.expire.notice"/>
         <binding id="dle.order.cancel" topic="dle.order.cancel" destinationType="queue" destination="dle.order.cancel">
             <arguments>
                 <argument name="x-message-ttl" xsi:type="number">5000</argument>
@@ -10,8 +9,6 @@
                 <argument name="x-dead-letter-routing-key" xsi:type="string">order.cancel</argument>
             </arguments>
         </binding>
-    </exchange>
-    <exchange name="magento">
         <binding id="dle.order.new" topic="dle.order.new" destinationType="queue" destination="dle.order.new">
             <arguments>
                 <argument name="x-message-ttl" xsi:type="number">15000</argument>

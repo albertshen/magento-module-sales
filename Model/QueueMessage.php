@@ -6,9 +6,10 @@
  */
 namespace AlbertMage\Sales\Model;
 
-use AlbertMage\Notification\Api\Data\QueueMessageInterface;
+use AlbertMage\Sales\Api\Data\QueueMessageInterface;
+use Magento\Framework\Model\AbstractModel;
 
-class QueueMessage implements QueueMessageInterface
+class QueueMessage extends AbstractModel implements QueueMessageInterface
 {
     /**
      * @inheritDoc

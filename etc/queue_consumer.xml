@@ -1,4 +1,4 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue_consumer.xsd">
-    <consumer name="order.cancel" queue="order.cancel" consumerInstance="Albert\CustomApi\Model\OrderCancelConsumer"/>
-    <consumer name="order.expire.notice" queue="order.expire.notice" consumerInstance="Albert\CustomApi\Model\OrderExpireNoticeConsumer"/>
+    <consumer name="order.cancel" queue="order.cancel" handler="AlbertMage\Sales\Model\OrderCancelConsumer::process" />
+    <consumer name="order.expire.notice" queue="order.expire.notice" handler="AlbertMage\Sales\Model\OrderExpireNoticeConsumer::process" />
 </config>

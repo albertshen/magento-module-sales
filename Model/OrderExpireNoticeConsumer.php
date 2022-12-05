@@ -5,9 +5,10 @@
  */
 namespace AlbertMage\Sales\Model;
 
-use Magento\Sales\Api\Data\OrderInterface,
+use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Framework\Event\ManagerInterface as EventManagerInterface;
-use AlbertMage\Notification\Api\Data\QueueMessageInterface;
+use AlbertMage\Sales\Api\Data\QueueMessageInterface;
+use Magento\Framework\MessageQueue\PublisherInterface;
 
 class OrderExpireNoticeConsumer
 {
@@ -35,6 +36,7 @@ class OrderExpireNoticeConsumer
      * @param OrderInterface $order
      */
     public function __construct(
+        EventManagerInterface $eventManager,
         PublisherInterface $publisher,
         OrderInterface $order
     ) {

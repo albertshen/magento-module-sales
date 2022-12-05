@@ -2,7 +2,7 @@
 /**
  * Copyright © PHP Digital, Inc. All rights reserved.
  */
-namespace AlbertMage\Notification\Api\Data;
+namespace AlbertMage\Sales\Api\Data;
 
 /**
  * QueueMessage Interface
@@ -16,14 +16,14 @@ interface QueueMessageInterface
     /**
      * Get order Id
      *
-     * @return string
+     * @return int
      */
     public function getOrderId();
 
     /**
      * Set Increment Id
      *
-     * @param string $orderId
+     * @param int $orderId
      * @return $this
      */
     public function setOrderId($orderId);

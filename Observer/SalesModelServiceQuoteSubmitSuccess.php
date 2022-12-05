@@ -4,7 +4,8 @@ namespace AlbertMage\Sales\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use AlbertMage\Sales\Api\Data\QueueMessageInterface;
+use AlbertMage\Sales\Api\Data\QueueMessageInterfaceFactory;
+use Magento\Framework\MessageQueue\PublisherInterface;
 
 class SalesModelServiceQuoteSubmitSuccess implements ObserverInterface
 {

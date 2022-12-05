@@ -5,14 +5,13 @@
  */
 namespace AlbertMage\Sales\Model;
 
-use AlbertMage\Notification\Api\Data\QueueMessageInterface;
+use AlbertMage\Sales\Api\Data\QueueMessageInterface;
 use Magento\Sales\Api\OrderManagementInterface;
 
 class OrderCancelConsumer
 {
     
     /**
-     *
      * @var OrderManagementInterface
      */
     protected $orderManagement;
