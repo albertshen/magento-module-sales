@@ -9,7 +9,7 @@
                 <argument name="x-dead-letter-routing-key" xsi:type="string">order.cancel</argument>
             </arguments>
         </binding>
-        <binding id="dle.order.new" topic="dle.order.new" destinationType="queue" destination="dle.order.new">
+        <binding id="dle.order.create" topic="dle.order.create" destinationType="queue" destination="dle.order.create">
             <arguments>
                 <argument name="x-message-ttl" xsi:type="number">15000</argument>
                 <argument name="x-dead-letter-exchange" xsi:type="string">magento</argument>

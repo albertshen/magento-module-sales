@@ -2,5 +2,5 @@
     <publisher topic="order.cancel" />
     <publisher topic="order.expire.notice" />
     <publisher topic="dle.order.cancel" />
-    <publisher topic="dle.order.new" />
+    <publisher topic="dle.order.create" />
 </config>

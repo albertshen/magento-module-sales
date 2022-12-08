@@ -2,5 +2,5 @@
     <topic name="order.cancel" request="AlbertMage\Sales\Api\Data\QueueMessageInterface" />
     <topic name="order.expire.notice" request="AlbertMage\Sales\Api\Data\QueueMessageInterface" />
     <topic name="dle.order.cancel" request="AlbertMage\Sales\Api\Data\QueueMessageInterface" />
-    <topic name="dle.order.new" request="AlbertMage\Sales\Api\Data\QueueMessageInterface" />
+    <topic name="dle.order.create" request="AlbertMage\Sales\Api\Data\QueueMessageInterface" />
 </config>

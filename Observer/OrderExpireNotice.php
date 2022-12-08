@@ -7,7 +7,7 @@ use Magento\Framework\Event\ObserverInterface;
 use AlbertMage\Sales\Api\Data\QueueMessageInterfaceFactory;
 use Magento\Framework\MessageQueue\PublisherInterface;
 
-class SalesModelServiceQuoteSubmitSuccess implements ObserverInterface
+class OrderExpireNotice implements ObserverInterface
 {
 
     /**
@@ -41,7 +41,7 @@ class SalesModelServiceQuoteSubmitSuccess implements ObserverInterface
         $queueMessage = $this->queueMessageFactory->create();
         $order = $observer->getEvent()->getOrder();
         $queueMessage->setOrderId($order->getId());
-        $this->publisher->publish('dle.order.new', $queueMessage);
+        $this->publisher->publish('dle.order.create', $queueMessage);
     }
 
 
