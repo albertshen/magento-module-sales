@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="sales_model_service_quote_submit_success">
-        <observer name="orderExpireNotice" instance="AlbertMage\Sales\Observer\OrderExpireNotice"/>
+        <observer name="sendEmail" disabled="true"/>
+        <observer name="salesOrderCreate" instance="AlbertMage\Sales\Observer\OrderCreate"/>
+        <observer name="salesOrderCreateDle" instance="AlbertMage\Sales\Observer\OrderCreateDle"/>
+        <observer name="salesOrderDeleteDle" instance="AlbertMage\Sales\Observer\OrderDeleteDle"/>
+    </event>
+    <event name="sales_order_payment_catpure">
+        <observer name="orderPaymentCapture" instance="AlbertMage\Sales\Observer\OrderPaymentCatpure"/>
+    </event>
+    <event name="order_cancel_consume">
+        <observer name="salesOrderCancelConume" instance="AlbertMage\Sales\Observer\OrderCancel"/>
     </event>
 </config>

@@ -4,10 +4,10 @@ namespace AlbertMage\Sales\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use AlbertMage\Sales\Api\Data\QueueMessageInterfaceFactory;
+use AlbertMage\Sales\Api\Data\OrderQueueInterfaceFactory;
 use Magento\Framework\MessageQueue\PublisherInterface;
 
-class OrderExpireNotice implements ObserverInterface
+class Order implements ObserverInterface
 {
 
     /**
@@ -16,19 +16,28 @@ class OrderExpireNotice implements ObserverInterface
     private $publisher;
 
     /**
-     * @var QueueMessageInterfaceFactory
+     * @var OrderQueueInterfaceFactory
      */
-    private $queueMessageFactory;
+    private $orderQueueInterfaceFactory;
+
+    /**
+     * @var string
+     */
+    private $queueTopic;
 
     /**
      * @param PublisherInterface $publisher
+     * @param OrderQueueInterfaceFactory $orderQueueInterfaceFactory
+     * @param string $queueTopic
      */
     public function __construct(
         PublisherInterface $publisher,
-        QueueMessageInterfaceFactory $queueMessageFactory
+        OrderQueueInterfaceFactory $orderQueueInterfaceFactory,
+        $queueTopic
     ) {
         $this->publisher = $publisher;
-        $this->queueMessageFactory = $queueMessageFactory;
+        $this->orderQueueInterfaceFactory = $orderQueueInterfaceFactory;
+        $this->queueTopic = $queueTopic;
     }
 
     /**
@@ -38,10 +47,10 @@ class OrderExpireNotice implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
-        $queueMessage = $this->queueMessageFactory->create();
+        $orderQueue = $this->orderQueueInterfaceFactory->create();
         $order = $observer->getEvent()->getOrder();
-        $queueMessage->setOrderId($order->getId());
-        $this->publisher->publish('dle.order.create', $queueMessage);
+        $orderQueue->setOrderId($order->getId());
+        $this->publisher->publish($this->queueTopic, $orderQueue);
     }
 
 

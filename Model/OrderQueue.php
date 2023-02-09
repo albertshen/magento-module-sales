@@ -6,10 +6,10 @@
  */
 namespace AlbertMage\Sales\Model;
 
-use AlbertMage\Sales\Api\Data\QueueMessageInterface;
+use AlbertMage\Sales\Api\Data\OrderQueueInterface;
 use Magento\Framework\Model\AbstractModel;
 
-class QueueMessage extends AbstractModel implements QueueMessageInterface
+class OrderQueue extends AbstractModel implements OrderQueueInterface
 {
     /**
      * @inheritDoc

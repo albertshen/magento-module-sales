@@ -5,10 +5,10 @@
 namespace AlbertMage\Sales\Api\Data;
 
 /**
- * QueueMessage Interface
+ * OrderQueue Interface
  * @author Albert Shen <albertshen1206@gmail.com>
  */
-interface QueueMessageInterface
+interface OrderQueueInterface
 {
 
     const ORDER_ID = 'order_id';

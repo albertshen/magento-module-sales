@@ -1,5 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © PHP Digital, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue_publisher.xsd">
+    <!-- topic: Name of topic-->
+    <publisher topic="order.create" />
     <publisher topic="order.cancel" />
+    <publisher topic="order.payment.capture" />
     <publisher topic="order.expire.notice" />
     <publisher topic="dle.order.cancel" />
     <publisher topic="dle.order.create" />

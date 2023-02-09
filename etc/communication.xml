@@ -1,6 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © PHP Digital, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue.xsd">
-    <topic name="order.cancel" request="AlbertMage\Sales\Api\Data\QueueMessageInterface" />
-    <topic name="order.expire.notice" request="AlbertMage\Sales\Api\Data\QueueMessageInterface" />
-    <topic name="dle.order.cancel" request="AlbertMage\Sales\Api\Data\QueueMessageInterface" />
-    <topic name="dle.order.create" request="AlbertMage\Sales\Api\Data\QueueMessageInterface" />
+    <!-- you can name topic according to self -->
+    <topic name="order.create" request="AlbertMage\Sales\Api\Data\OrderQueueInterface">
+        <handler name="order.create" type="AlbertMage\Sales\Model\OrderCreateConsumer" method="process" />
+    </topic>
+    <topic name="order.cancel" request="AlbertMage\Sales\Api\Data\OrderQueueInterface">
+        <handler name="order.cancel" type="AlbertMage\Sales\Model\OrderCancelConsumer" method="process" />
+    </topic>
+    <topic name="order.payment.capture" request="AlbertMage\Sales\Api\Data\OrderQueueInterface">
+        <handler name="order.payment.capture" type="AlbertMage\Sales\Model\OrderPaymentCaptureConsumer" method="process" />
+    </topic>
+    <topic name="order.expire.notice" request="AlbertMage\Sales\Api\Data\OrderQueueInterface" />
+        <handler name="order.expire.notice" type="AlbertMage\Sales\Model\OrderExpireNoticeConsumer" method="process" />
+    </topic>
+    <topic name="dle.order.cancel" request="AlbertMage\Sales\Api\Data\OrderQueueInterface" />
+    <topic name="dle.order.create" request="AlbertMage\Sales\Api\Data\OrderQueueInterface" />
 </config>

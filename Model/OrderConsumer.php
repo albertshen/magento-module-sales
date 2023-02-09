@@ -7,8 +7,7 @@ namespace AlbertMage\Sales\Model;
 
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Framework\Event\ManagerInterface as EventManagerInterface;
-use AlbertMage\Sales\Api\Data\QueueMessageInterface;
-use Magento\Framework\MessageQueue\PublisherInterface;
+use AlbertMage\Sales\Api\Data\OrderQueueInterface;
 
 class OrderExpireNoticeConsumer
 {
@@ -21,41 +20,40 @@ class OrderExpireNoticeConsumer
     private $eventManager;
 
     /**
-     * @var PublisherInterface
-     */
-    private $publisher;
-
-    /**
-     * @var OrderInterface $order,
+     * @var OrderInterface
      */
     private $order;
 
     /**
+     * @var string
+     */
+    private $event;
+
+    /**
      * @param EventManagerInterface $eventManager
-     * @param PublisherInterface $publisher
      * @param OrderInterface $order
+     * @param string $event
      */
     public function __construct(
         EventManagerInterface $eventManager,
-        PublisherInterface $publisher,
-        OrderInterface $order
+        OrderInterface $order,
+        string $event
     ) {
         $this->eventManager = $eventManager;
-        $this->publisher = $publisher;
         $this->order = $order;
+        $this->event = $event;
     }
 
     /**
-     * @param QueueMessageInterface $queueMessage
+     * @param OrderQueueInterface $orderQueue
      * @return void
      * @throws \Exception
      */
-    public function process(QueueMessageInterface $queueMessage): void
+    public function process(OrderQueueInterface $orderQueue): void
     {
-        $order = $this->order->load($queueMessage->getOrderId());
-        $this->publisher->publish('dle.order.cancel', $queueMessage);
+        $order = $this->order->load($orderQueue->getOrderId());
         $this->eventManager->dispatch(
-            'order_expire_notice',
+            $this->event,
             ['order' => $order]
         );
 

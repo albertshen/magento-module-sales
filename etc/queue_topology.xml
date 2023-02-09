@@ -1,10 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © PHP Digital, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue_topology.xsd">
+    <!-- name : A unique ID for the exchange  -->
+    <!-- type : Specifies the type of exchange. Must be topic -->
+    <!-- connection: For AMQP connections, a string that identifies the connection. For MySQL connections, the connection name must be db -->
     <exchange name="magento">
+        <!-- id: A unique ID for this binding -->
+        <!-- topic: The name of a topic -->
+        <!-- destinationType: Must be queue -->
+        <!-- destination: Identifies the name of a queue -->
+        <binding id="order.create" topic="order.create" destinationType="queue" destination="order.create"/>
         <binding id="order.cancel" topic="order.cancel" destinationType="queue" destination="order.cancel"/>
         <binding id="order.expire.notice" topic="order.expire.notice" destinationType="queue" destination="order.expire.notice"/>
         <binding id="dle.order.cancel" topic="dle.order.cancel" destinationType="queue" destination="dle.order.cancel">
             <arguments>
-                <argument name="x-message-ttl" xsi:type="number">5000</argument>
+                <argument name="x-message-ttl" xsi:type="number">20000</argument>
                 <argument name="x-dead-letter-exchange" xsi:type="string">magento</argument>
                 <argument name="x-dead-letter-routing-key" xsi:type="string">order.cancel</argument>
             </arguments>
@@ -16,5 +31,6 @@
                 <argument name="x-dead-letter-routing-key" xsi:type="string">order.expire.notice</argument>
             </arguments>
         </binding>
+        <binding id="order.payment.capture" topic="order.payment.capture" destinationType="queue" destination="order.payment.capture"/>
     </exchange>
 </config>
