@@ -9,7 +9,7 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Framework\Event\ManagerInterface as EventManagerInterface;
 use AlbertMage\Sales\Api\Data\OrderQueueInterface;
 
-class OrderExpireNoticeConsumer
+class OrderConsumer
 {
 
     /**
