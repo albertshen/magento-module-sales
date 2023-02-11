@@ -5,6 +5,7 @@ namespace AlbertMage\Sales\Observer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Api\OrderManagementInterface;
+use Magento\Framework\Event\ManagerInterface as EventManagerInterface;
 
 class OrderExpireNotice implements ObserverInterface
 {
@@ -15,12 +16,20 @@ class OrderExpireNotice implements ObserverInterface
     protected $orderManagement;
 
     /**
+     * @var EventManagerInterface
+     */
+    private $eventManager;
+
+    /**
      * @param OrderManagementInterface $orderManagement
+     * @param EventManagerInterface $eventManager
      */
     public function __construct(
-        OrderManagementInterface $orderManagement
+        OrderManagementInterface $orderManagement,
+        EventManagerInterface $eventManager
     ) {
         $this->orderManagement = $orderManagement;
+        $this->eventManager = $eventManager;
     }
 
     /**
@@ -30,6 +39,10 @@ class OrderExpireNotice implements ObserverInterface
     public function execute(Observer $observer)
     {
         $this->orderManagement->cancel($observer->getOrder()->getOrderId());
+        $this->eventManager->dispatch(
+            'order_cancel_consume_after',
+            ['order' => $order]
+        );
     }
 
 
