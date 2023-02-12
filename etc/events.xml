@@ -4,7 +4,7 @@
         <observer name="sendEmail" disabled="true"/>
         <observer name="salesOrderCreate" instance="AlbertMage\Sales\Observer\OrderCreate"/>
         <observer name="salesOrderCreateDle" instance="AlbertMage\Sales\Observer\OrderCreateDle"/>
-        <observer name="salesOrderDeleteDle" instance="AlbertMage\Sales\Observer\OrderDeleteDle"/>
+        <observer name="OrderCancelDle" instance="AlbertMage\Sales\Observer\OrderCancelDle"/>
     </event>
     <event name="sales_order_payment_catpure">
         <observer name="orderPaymentCapture" instance="AlbertMage\Sales\Observer\OrderPaymentCatpure"/>

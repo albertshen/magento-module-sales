@@ -24,36 +24,34 @@ class OrderConsumer
      */
     private $order;
 
-    /**
-     * @var string
-     */
-    private $event;
 
     /**
      * @param EventManagerInterface $eventManager
      * @param OrderInterface $order
-     * @param string $event
      */
     public function __construct(
         EventManagerInterface $eventManager,
-        OrderInterface $order,
-        string $event
+        OrderInterface $order
     ) {
         $this->eventManager = $eventManager;
         $this->order = $order;
-        $this->event = $event;
     }
 
     /**
      * @param OrderQueueInterface $orderQueue
      * @return void
-     * @throws \Exception
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function process(OrderQueueInterface $orderQueue): void
     {
+        if (!static::EVENT_NAME) {
+            throw new \Magento\Framework\Exception\LocalizedException(
+                __('Event name must be needed.')
+            );
+        }
         $order = $this->order->load($orderQueue->getOrderId());
         $this->eventManager->dispatch(
-            $this->event,
+            static::EVENT_NAME,
             ['order' => $order]
         );
 

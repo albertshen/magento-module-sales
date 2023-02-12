@@ -7,7 +7,7 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Api\OrderManagementInterface;
 use Magento\Framework\Event\ManagerInterface as EventManagerInterface;
 
-class OrderExpireNotice implements ObserverInterface
+class OrderCancel implements ObserverInterface
 {
 
     /**
@@ -38,7 +38,8 @@ class OrderExpireNotice implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
-        $this->orderManagement->cancel($observer->getOrder()->getOrderId());
+        $order = $observer->getOrder();
+        $this->orderManagement->cancel($order->getId());
         $this->eventManager->dispatch(
             'order_cancel_consume_after',
             ['order' => $order]
