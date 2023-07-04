@@ -1,7 +1,13 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="AlbertMage\Sales\Api\Data\OrderQueueInterface" type="AlbertMage\Sales\Model\OrderQueue" />
-    <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="AlbertMage\Sales\Model\Order\Pdf\Invoice" />
+    <preference for="AlbertMage\Sales\Model\Order\Pdf\Invoice" type="AlbertMage\Sales\Model\Order\Pdf\Invoice" />
+    <preference for="AlbertMage\Sales\Api\Data\OrderInterface" type="AlbertMage\Sales\Model\Order" />
+    <preference for="AlbertMage\Sales\Api\Data\OrderItemInterface" type="AlbertMage\Sales\Model\OrderItem" />
+    <preference for="AlbertMage\Sales\Api\Data\OrderItemInterface" type="AlbertMage\Sales\Model\OrderItem" />
+    <preference for="AlbertMage\Sales\Api\Data\OrderSearchResultsInterface" type="AlbertMage\Sales\Model\OrderSearchResults" />
+    <preference for="AlbertMage\Sales\Api\Data\OrderAddressInterface" type="AlbertMage\Sales\Model\OrderAddress" />
+    <preference for="AlbertMage\Sales\Api\OrderManagementInterface" type="AlbertMage\Sales\Model\OrderManagement" />
     <!-- Observer -->
     <virtualType name="AlbertMage\Sales\Observer\OrderCreate" type="AlbertMage\Sales\Observer\Order">
         <arguments>

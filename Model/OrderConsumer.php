@@ -17,13 +17,12 @@ class OrderConsumer
      *
      * @var EventManagerInterface
      */
-    private $eventManager;
+    protected $eventManager;
 
     /**
      * @var OrderInterface
      */
-    private $order;
-
+    protected $order;
 
     /**
      * @param EventManagerInterface $eventManager
